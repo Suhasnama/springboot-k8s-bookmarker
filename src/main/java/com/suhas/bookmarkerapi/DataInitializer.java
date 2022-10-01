@@ -20,6 +20,10 @@ public class DataInitializer implements CommandLineRunner{
         bookmarkRepository.save(new Bookmark(null, "Google", "https://google.com", Instant.now()));
         bookmarkRepository.save(new Bookmark(null, "Yahoo", "https://yahoo.com", Instant.now()));
         bookmarkRepository.save(new Bookmark(null, "Bing", "https://bing.com", Instant.now()));
+        bookmarkRepository.save(new Bookmark(null, "Yandex", "https://yandex.com", Instant.now()));
+        bookmarkRepository.save(new Bookmark(null, "Apple", "https://apple.com", Instant.now()));
+        bookmarkRepository.save(new Bookmark(null, "Netflix", "https://netflix.com", Instant.now()));
+        bookmarkRepository.save(new Bookmark(null, "Hotstar", "https://hotstar.com", Instant.now()));
     }
 
 }
