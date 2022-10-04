@@ -1,5 +1,6 @@
 package com.suhas.bookmarkerapi.domain;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,9 +16,15 @@ public class BookmarkService {
     private final BookmarkRepository bookmarkRepository;
 
     @Transactional(readOnly = true)
-    public BookmarkDTO getBookmarks(Integer page){
-        Integer pageNo = page < 1 ? 0 : page-1;
-        Pageable pageable = PageRequest.of(pageNo, 2,Sort.Direction.DESC,"createdAt");
-        return new BookmarkDTO( bookmarkRepository.findAll(pageable));
+    public BookmarksDTO getBookmarks(Integer page) {
+        Integer pageNo = page < 1 ? 0 : page - 1;
+        Pageable pageable = PageRequest.of(pageNo, 2, Sort.Direction.DESC, "createdAt");
+        // Page<BookmarkDTO> bookmarPage = bookmarkRepository.findAll(pageable)
+        // .map(bookmark -> bookmarkMapper.toDTO(bookmark));
+
+        Page<BookmarkDTO> bookmarPage = bookmarkRepository.findBookmarks(pageable);
+        // .findAll(pageable)
+        // .map(bookmark -> bookmarkMapper.toDTO(bookmark));
+        return new BookmarksDTO(bookmarPage);
     }
 }
